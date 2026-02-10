@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bimbel By Aefka - Amanah & Terercaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #0a0a0a;
+            --bg-card: #161616;
+            --text-main: #ffffff;
+            --text-sub: #a0a0a0;
+            --border-color: #222222;
+            --btn-bg: #ffffff;
+            --btn-text: #000000;
+            --alert-bg: rgba(255, 255, 255, 0.02);
+            --watermark: #2a2a2a;
+        }
+
+        [data-theme="light"] {
+            --bg-body: #f5f5f7;
+            --bg-card: #ffffff;
+            --text-main: #1d1d1f;
+            --text-sub: #6e6e73;
+            --border-color: #d2d2d7;
+            --btn-bg: #1d1d1f;
+            --btn-text: #ffffff;
+            --alert-bg: rgba(0, 0, 0, 0.03);
+            --watermark: #cbcbcb;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: all 0.4s ease;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        header {
+            padding: 60px 20px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin: 0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        [data-theme="dark"] h1 {
+            background: linear-gradient(to bottom, #ffffff 40%, #888888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--text-sub);
+            margin-top: 8px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex-grow: 1;
+        }
+
+        .alert-info {
+            border: 1px solid var(--border-color);
+            background: var(--alert-bg);
+            padding: 15px;
+            border-radius: 2px;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 35px 25px;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card:hover {
+            border-color: var(--text-main);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            text-align: center;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            padding: 8px 5px;
+        }
+
+        .price-item .duration {
+            color: var(--text-sub);
+        }
+
+        .price-item .amount {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 15px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            text-decoration: none;
+            text-align: center;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            border: 1px solid var(--btn-bg);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--text-main);
+        }
+
+        .note-small {
+            font-size: 0.65rem;
+            color: var(--text-sub);
+            margin-top: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .watermark {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--watermark);
+            font-weight: 700;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+<button class="theme-toggle" id="modeBtn">
+    <i class="fas fa-sun" id="modeIcon"></i>
+</button>
+
+<header>
+    <h1>Bimbel By Aefka</h1>
+    <div class="subtitle">Amanah & Terpercaya</div>
+</header>
+
+<div class="container">
+    <div class="alert-info">
+        Pembayaran Sebelum Pertemuan • Berlaku Untuk Mata Pelajaran Umum
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Tingkat SD</h3>
+            <div class="price-item">
+                <span class="duration">1 JAM</span>
+                <span class="amount">40 RIBU</span>
+            </div>
+            <div class="price-item">
+                <span class="duration">1.5 JAM</span>
+                <span class="amount">50 RIBU</span>
+            </div>
+            <a href="https://wa.me/62895339300512?text=kak%20mau%20les%2C%20%5BMau%20les%20Tingkat%20SD%5D" class="btn">Daftar Sekarang</a>
+        </div>
+
+        <div class="card">
+            <h3>Tingkat SMP</h3>
+            <div class="price-item">
+                <span class="duration">1 JAM</span>
+                <span class="amount">50 RIBU</span>
+            </div>
+            <div class="price-item">
+                <span class="duration">1.5 JAM</span>
+                <span class="amount">60 RIBU</span>
+            </div>
+            <a href="https://wa.me/62895339300512?text=kak%20mau%20les%2C%20%5BMau%20les%20Tingkat%20SMP%5D" class="btn">Daftar Sekarang</a>
+        </div>
+
+        <div class="card">
+            <h3>Tingkat SMA</h3>
+            <div class="price-item">
+                <span class="duration">1 JAM</span>
+                <span class="amount">60 RIBU</span>
+            </div>
+            <div class="price-item">
+                <span class="duration">1.5 JAM</span>
+                <span class="amount">70 RIBU</span>
+            </div>
+            <a href="https://wa.me/62895339300512?text=kak%20mau%20les%2C%20%5BMau%20les%20Tingkat%20SMA%5D" class="btn">Daftar Sekarang</a>
+        </div>
+
+        <div class="card">
+            <h3>Lanjutan/Kuliah</h3>
+            <div class="price-item">
+                <span class="duration">1 JAM</span>
+                <span class="amount">90 RIBU*</span>
+            </div>
+            <div class="price-item">
+                <span class="duration">1.5 JAM</span>
+                <span class="amount">100 RIBU*</span>
+            </div>
+            <div class="note-small">*Harga menyesuaikan tingkat kesulitan materi</div>
+            <a href="https://wa.me/62895339300512?text=kak%20mau%20les%2C%20%5BMau%20les%20Tingkat%20Lanjutan%2FKuliah%5D" class="btn">Hubungi Admin</a>
+        </div>
+    </div>
+</div>
+
+<div class="watermark">
+    Powered by xrafakillz
+</div>
+
+<script>
+    const modeBtn = document.getElementById('modeBtn');
+    const body = document.body;
+    const icon = document.getElementById('modeIcon');
+
+    modeBtn.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            body.setAttribute('data-theme', 'light');
+            icon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+    });
+</script>
+
+</body>
+</html>
